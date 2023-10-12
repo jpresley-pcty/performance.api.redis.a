@@ -1,0 +1,209 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Description": "Performance API Redis A B testing. This template is partially managed by Amazon.Lambda.Annotations (v1.0.0.0).",
+  "Resources": {
+    "performanceapiredisaFunctionsDefaultGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "PackageType": "Zip",
+        "Handler": "performance.api.redis.a::performance.api.redis.a.Functions_Default_Generated::Default",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/",
+              "Method": "GET"
+            }
+          }
+        },
+        "Policies": [
+          "AWSLambdaBasicExecutionRole",
+          "AmazonVPCFullAccess",
+          "AmazonElastiCacheFullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "redisEndpoint": "redis-east-2.4hlkeh.ng.0001.use1.cache.amazonaws.com:6379",
+            "bEndpoint": "https://mkk3bnmhg4.execute-api.us-east-1.amazonaws.com/direct"
+          }
+        },
+        "VpcConfig": {
+          "SubnetIds": [
+            "subnet-065ee8a3f968fbc46",
+            "subnet-0943865ad46f3e971",
+            "subnet-075283d455fe10715",
+            "subnet-0a8272f332bce8854",
+            "subnet-0816c23450f1cb621",
+            "subnet-0e219e4ce4fabd342"
+          ],
+          "SecurityGroupIds": [
+            "sg-0b2b0fbc1c18ebb7d"
+          ]
+        }
+      }
+    },
+    "performanceapiredisaFunctionsSetupGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "PackageType": "Zip",
+        "Handler": "performance.api.redis.a::performance.api.redis.a.Functions_Setup_Generated::Setup",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/setup",
+              "Method": "GET"
+            }
+          }
+        },
+        "Policies": [
+          "AWSLambdaBasicExecutionRole",
+          "AmazonVPCFullAccess",
+          "AmazonElastiCacheFullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "redisEndpoint": "redis-east-2.4hlkeh.ng.0001.use1.cache.amazonaws.com:6379"
+          }
+        },
+        "VpcConfig": {
+          "SubnetIds": [
+            "subnet-065ee8a3f968fbc46",
+            "subnet-0943865ad46f3e971",
+            "subnet-075283d455fe10715",
+            "subnet-0a8272f332bce8854",
+            "subnet-0816c23450f1cb621",
+            "subnet-0e219e4ce4fabd342"
+          ],
+          "SecurityGroupIds": [
+            "sg-0b2b0fbc1c18ebb7d"
+          ]
+        }
+      }
+    },
+    "performanceapiredisaFunctionsDirectDataGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "PackageType": "Zip",
+        "Handler": "performance.api.redis.a::performance.api.redis.a.Functions_DirectData_Generated::DirectData",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/direct/{key}",
+              "Method": "GET"
+            }
+          }
+        },
+        "Policies": [
+          "AWSLambdaBasicExecutionRole",
+          "AmazonVPCFullAccess",
+          "AmazonElastiCacheFullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "redisEndpoint": "redis-east-2.4hlkeh.ng.0001.use1.cache.amazonaws.com:6379"
+          }
+        },
+        "VpcConfig": {
+          "SubnetIds": [
+            "subnet-065ee8a3f968fbc46",
+            "subnet-0943865ad46f3e971",
+            "subnet-075283d455fe10715",
+            "subnet-0a8272f332bce8854",
+            "subnet-0816c23450f1cb621",
+            "subnet-0e219e4ce4fabd342"
+          ],
+          "SecurityGroupIds": [
+            "sg-0b2b0fbc1c18ebb7d"
+          ]
+        }
+      }
+    },
+    "performanceapiredisaFunctionsIndirectDataGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole",
+          "AmazonVPCFullAccess",
+          "AmazonElastiCacheFullAccess",
+          "AWSLambdaVPCAccessExecutionRole"
+        ],
+        "Environment": {
+          "Variables": {
+            "redisEndpoint": "redis-east-2.4hlkeh.ng.0001.use1.cache.amazonaws.com:6379",
+            "bEndpoint": "https://mkk3bnmhg4.execute-api.us-east-1.amazonaws.com/direct"
+          }
+        },
+        "VpcConfig": {
+          "SubnetIds": [
+            "subnet-0a8272f332bce8854"
+          ],
+          "SecurityGroupIds": [
+            "sg-0b2b0fbc1c18ebb7d"
+          ]
+        },
+        "PackageType": "Zip",
+        "Handler": "performance.api.redis.a::performance.api.redis.a.Functions_IndirectData_Generated::IndirectData",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/indirect/{key}",
+              "Method": "GET"
+            }
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ApiURL": {
+      "Description": "API endpoint URL for Prod environment",
+      "Value": {
+        "Fn::Sub": "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
+      }
+    }
+  }
+}

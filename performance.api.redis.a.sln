@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "performance.api.redis.a", "src\performance.api.redis.a\performance.api.redis.a.csproj", "{8458B1C1-D84F-4804-BB47-050D1820BCA7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "performance.api.redis.a.Tests", "test\performance.api.redis.a.Tests\performance.api.redis.a.Tests.csproj", "{7CAAF23F-0649-40B9-A2BD-9689F3CA3A0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8458B1C1-D84F-4804-BB47-050D1820BCA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8458B1C1-D84F-4804-BB47-050D1820BCA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8458B1C1-D84F-4804-BB47-050D1820BCA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8458B1C1-D84F-4804-BB47-050D1820BCA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CAAF23F-0649-40B9-A2BD-9689F3CA3A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CAAF23F-0649-40B9-A2BD-9689F3CA3A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CAAF23F-0649-40B9-A2BD-9689F3CA3A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CAAF23F-0649-40B9-A2BD-9689F3CA3A0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
