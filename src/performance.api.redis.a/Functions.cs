@@ -38,9 +38,9 @@ public class Functions
     public string Default()
     {
         const string docs = @"Performance API Redis A B testing.
-/setup - adds data to redis
-/direct/{key} - retrieves data from redis directly, key is a redis key ref small|medium|large
-/indirect/{key} - retrieves data redis by calling another api, key is a redis key ref small|medium|large";
+POST /setup - adds data to each redis endpoint passed in { redis: [] }
+POST /direct - retrieves data from redis directly, { Key: small|medium|large, RedisEndpoint: string }
+POST /indirect - retrieves data redis by calling another api, { Key: small|medium|large, RedisEndpoint: string, ApiEndPoint: string }";
         return docs;
     }
 
@@ -49,10 +49,10 @@ public class Functions
     /// </summary>
     /// <returns>200 status</returns>
     [LambdaFunction(@Policies = "AWSLambdaBasicExecutionRole,AmazonVPCFullAccess,AmazonElastiCacheFullAccess")]
-    [HttpApi(LambdaHttpMethod.Get, "/setup")]
-    public async Task<IHttpResult> Setup(ILambdaContext context)
+    [HttpApi(LambdaHttpMethod.Post, "/setup")]
+    public async Task<IHttpResult> Setup([FromBody] SetupRequest request, ILambdaContext context)
     {
-        return HttpResults.Ok(await _redisService.SetupData(context));
+        return HttpResults.Ok(await _redisService.SetupData(request, context));
     }
 
     /// <summary>
@@ -60,10 +60,10 @@ public class Functions
     /// </summary>
     /// <returns>200 status</returns>
     [LambdaFunction(@Policies = "AWSLambdaBasicExecutionRole,AmazonVPCFullAccess,AmazonElastiCacheFullAccess")]
-    [HttpApi(LambdaHttpMethod.Get, "/direct/{key}")]
-    public async Task<IHttpResult> DirectData(string key, ILambdaContext context)
+    [HttpApi(LambdaHttpMethod.Post, "/direct")]
+    public async Task<IHttpResult> DirectData([FromBody] DataRequest request, ILambdaContext context)
     {
-        return HttpResults.Ok(await _redisService.DirectData(key, context));
+        return HttpResults.Ok(await _redisService.DirectData(request, context));
     }
 
     /// <summary>
@@ -71,9 +71,9 @@ public class Functions
     /// </summary>
     /// <returns>200 status</returns>
     [LambdaFunction(@Policies = "AWSLambdaBasicExecutionRole,AmazonVPCFullAccess,AmazonElastiCacheFullAccess,AWSLambdaVPCAccessExecutionRole")]
-    [HttpApi(LambdaHttpMethod.Get, "/indirect/{key}")]
-    public async Task<IHttpResult> IndirectData(string key, ILambdaContext context)
+    [HttpApi(LambdaHttpMethod.Post, "/indirect")]
+    public async Task<IHttpResult> IndirectData([FromBody] DataRequest request, ILambdaContext context)
     {
-        return HttpResults.Ok(await _redisService.IndirectData(key, context));
+        return HttpResults.Ok(await _redisService.IndirectData(request, context));
     }
 }

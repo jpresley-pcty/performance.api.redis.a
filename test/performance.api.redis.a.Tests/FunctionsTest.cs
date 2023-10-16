@@ -13,9 +13,9 @@ public class FunctionsTest
     public FunctionsTest()
     {
         var context = new TestLambdaContext();
-        var key = "small";
+        var request = new DataRequest();
         var mock = new Mock<IRedisService>();
-        mock.Setup(m => m.DirectData(key, context)).Returns(() => new ResultTime(){Message = "test", ElapsedTime = 0});
+        mock.Setup(m => m.DirectData(request, context)).Returns(() => new ResultTime(){Message = "test", ElapsedTime = 0});
 
         _mockRedisService = mock.Object;
     }

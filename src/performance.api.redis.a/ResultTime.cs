@@ -1,5 +1,3 @@
-using StackExchange.Redis;
-
 namespace performance.api.redis.a;
 
 public class ResultTime
