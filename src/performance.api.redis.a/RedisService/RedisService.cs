@@ -18,47 +18,44 @@ public class RedisService : IRedisService
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        foreach (var endpoint in request.Redis)
+        var redis = await ConnectionMultiplexer.ConnectAsync(request.RedisEndpoint);
+        var db = redis.GetDatabase();
+
+        var ran = new Random();
+        var testList = new List<int>();
+
+        for (var i = 0; i <= 1000; i++)
         {
-            var redis = await ConnectionMultiplexer.ConnectAsync(endpoint);
-            var db = redis.GetDatabase();
-
-            var ran = new Random();
-            var testList = new List<int>();
-
-            for (var i = 0; i <= 1000; i++)
-            {
-                testList.Add(ran.Next());
-            }
-
-            await db.KeyDeleteAsync("small");
-            await db.HashSetAsync("small", new[]
-            {
-                new HashEntry("test", JsonSerializer.Serialize(testList))
-            });
-
-            for (var i = 0; i <= 50000; i++)
-            {
-                testList.Add(ran.Next());
-            }
-
-            await db.KeyDeleteAsync("medium");
-            await db.HashSetAsync("medium", new[]
-            {
-                new HashEntry("test", JsonSerializer.Serialize(testList))
-            });
-
-            for (var i = 0; i <= 500000; i++)
-            {
-                testList.Add(ran.Next());
-            }
-
-            await db.KeyDeleteAsync("large");
-            await db.HashSetAsync("large", new[]
-            {
-                new HashEntry("test", JsonSerializer.Serialize(testList))
-            });
+            testList.Add(ran.Next());
         }
+
+        await db.KeyDeleteAsync("small");
+        await db.HashSetAsync("small", new[]
+        {
+            new HashEntry("test", JsonSerializer.Serialize(testList))
+        });
+
+        for (var i = 0; i <= 50000; i++)
+        {
+            testList.Add(ran.Next());
+        }
+
+        await db.KeyDeleteAsync("medium");
+        await db.HashSetAsync("medium", new[]
+        {
+            new HashEntry("test", JsonSerializer.Serialize(testList))
+        });
+
+        for (var i = 0; i <= 500000; i++)
+        {
+            testList.Add(ran.Next());
+        }
+
+        await db.KeyDeleteAsync("large");
+        await db.HashSetAsync("large", new[]
+        {
+            new HashEntry("test", JsonSerializer.Serialize(testList))
+        });
 
         stopwatch.Stop();
         var result = new ResultTime()

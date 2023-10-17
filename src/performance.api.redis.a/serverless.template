@@ -159,7 +159,8 @@
             "subnet-0a8272f332bce8854",
             "subnet-0eae3a1cb936a83a0",
             "subnet-0816c23450f1cb621",
-            "subnet-065ee8a3f968fbc46"
+            "subnet-065ee8a3f968fbc46",
+            "subnet-00b4137eb2eea16c5"
           ],
           "SecurityGroupIds": [
             "sg-0b2b0fbc1c18ebb7d"

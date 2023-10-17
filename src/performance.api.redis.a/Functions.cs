@@ -38,7 +38,7 @@ public class Functions
     public string Default()
     {
         const string docs = @"Performance API Redis A B testing.
-POST /setup - adds data to each redis endpoint passed in { redis: [] }
+POST /setup - adds data to each redis endpoint passed in { RedisEndpoint: string }
 POST /direct - retrieves data from redis directly, { Key: small|medium|large, RedisEndpoint: string }
 POST /indirect - retrieves data redis by calling another api, { Key: small|medium|large, RedisEndpoint: string, ApiEndPoint: string }";
         return docs;
